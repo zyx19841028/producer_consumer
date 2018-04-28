@@ -1,4 +1,4 @@
-#include <ringqueue.h>
+#include "ringqueue.h"
 #include <iostream>
 template <class T>
 RingQueue<T>::RingQueue(uint32_t compacity){
@@ -49,7 +49,7 @@ T* RingQueue<T>::DeQueue(){
     if(IsEmpty()){
         return NULL;
     }else{
-        T* ret = &m_queue(m_out & (MASK));
+        T* ret = &m_queue[m_out & (MASK)];
         m_out++;
         m_length--;
         return ret;
