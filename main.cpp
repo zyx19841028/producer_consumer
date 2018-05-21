@@ -50,9 +50,7 @@ void* HandleConsumer(void* arg){
 }
 int main(void){
     RingQueue<int>* q = new RingQueue<int>();
-    pthread_mutex_t in_mutex,out_mutex;
-    uint32_t compacity = q->GetCompacity();
-    sem_init(&sem_in, 0, compacity);
+    sem_init(&sem_in, 0, q->GetCompacity());
     sem_init(&sem_out, 0, 0);
     for(int i = 0; i < PRODUCER; i++){
         pthread_create(&threads[i], NULL, HandleProducer, (void*)i);
